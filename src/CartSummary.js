@@ -1,0 +1,51 @@
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import {UncontrolledDropdown, 
+        DropdownToggle, 
+        DropdownMenu, 
+        DropdownItem,
+        Badge,
+        NavItem,
+        NavLink
+} from 'reactstrap';
+
+export default class CartSummary extends Component {
+
+    renderSummary() {
+        return (
+            <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                Cart contains: {this.props.cart.length}
+                </DropdownToggle>
+                <DropdownMenu id="dropdownMenu" end>
+                {
+                    this.props.cart.map(item=>(
+                        <DropdownItem key={item.product.id}>
+                            <Badge color="danger" onClick={()=>{this.props.removeFromCart(item.product)}}>-</Badge> 
+                            {item.product.productName} <Badge color="success">{item.quantity}</Badge>
+                        </DropdownItem>
+                    ))
+                }
+                <DropdownItem divider />
+                <DropdownItem>
+                    <Link to="cart">View cart</Link>
+                </DropdownItem>
+                </DropdownMenu>
+            </UncontrolledDropdown>
+        );
+    }
+
+    renderEmptyCart() {
+        return (
+            <NavItem>
+                <NavLink>Card is Empty</NavLink>
+            </NavItem>
+        );
+    }
+
+    render() {
+        return (
+            <div>{this.props.cart.length > 0 ? this.renderSummary() : this.renderEmptyCart()}</div>
+        );
+    }
+}

@@ -1,0 +1,83 @@
+/* Login */
+
+.html {
+    position: center;
+    width: 1440px;
+    height: 810px;
+
+    /* Input Background */
+    background: #F0F0F0;
+}
+
+.mainLoginForm {
+    position: absolute;
+    height: 504px;
+    left: 480px;
+    right: 480px;
+    top: 153px;
+
+    /* Input Background */
+    background: #0A3B80;
+    border-radius: 12px;
+}
+
+.loginLogo {
+    position: relative;
+    width: 200px;
+    height: 127.25px;
+    left: 200px;
+    top: 100px;
+
+    background: url(../resource/logo.svg);
+}
+
+.title {
+    position: relative;
+    height: 29px;
+    left: 48px;
+    top: 100px;
+
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+
+    /* identical to box height */
+
+    /* White — High Emphasis (100%) */
+    color: #FFFFFF;
+
+    mix-blend-mode: normal;
+    opacity: 0.87;
+}
+
+
+/* Text Field / Filled / Two Icons / No Assistive Text / Enabled */
+.inputUserName {
+    /* Text Field / Filled / Two Icons / No Assistive Text / Enabled */
+    position: relative;
+    height: 48px;
+    left: 0px;
+    width: 60%;
+    top: 10px;
+}
+
+.inputPassword {
+    position: relative;
+    height: 48px;
+    width: 60%;
+    top: 10px;
+}
+
+.loginSubmitBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 0px;
+
+    position: relative;
+    width: 140px;
+    height: 48px;
+    top: 10px;
+}

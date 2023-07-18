@@ -1,0 +1,7 @@
+.Main-Nav-Bar {
+    background-color:rgb(134, 205, 218);
+    display: block;
+    flex-direction: row;
+    justify-content: left;
+    padding: 5px;
+  }
