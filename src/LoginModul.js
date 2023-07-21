@@ -1,48 +1,71 @@
-import React, { useState } from "react";
-import { Form, Input, Label } from "reactstrap";
-import { useNavigate } from 'react-router-dom';
-import './css/Login.css';
+import React, {Component} from "react";
+import { BrowserRouter, Navigate } from "react-router-dom";
+import { Col, Container, Form, Input, Label, Row } from "reactstrap";
 
-const LoginForm = () => {
-    const navigate = useNavigate();
-    const [userName, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (userName !== "" && password !== "") {
-            setAuthenticated(true)
-            localStorage.setItem("authenticated", true);
-            console.log(userName + " . " + password);
-            navigate("/app");
-        }
-    };
-    return (
-        <div className="mainLoginForm">
-            <div className="loginLogo"></div>
-            <div className="title">
-                Login
-                <div className="inputUserName">
-                    <Input
-                        name="userName"
-                        type="text"
-                        placeholder="Geben Sie bitte den Benutzernamen ein"
-                        onChange={(ev) => setUsername(ev.target.value)}
-                        required />
-                </div>
-                <div className="inputPassword">
-                    <Input
-                        name="password"
-                        type="password"
-                        placeholder="Geben Sie bitte das Passwort ein"
-                        onChange={(ev) => setPassword(ev.target.value)}
-                        required />
-                </div>
-                <div className="loginSubmitBtn"><Input onClick={handleSubmit} type="submit" value="Anmelden" /></div>
-            </div>
+export default class LoginModul extends Component {
+
+    state = {
+        userName: "", password: ""
+    }
+
+    inputHandler = (event) => {
+        // this.setState({userName:event.target.value}) <--- if so, each input will change only this property
+        // to handle different properties use the name-param of the element, but the given name-value must be the same as the state.property field-name
+        this.setState({[event.target.name]:event.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
+    renderLogin() {
+        return(
+        <div className="LoginForm">
+            {this.state.userName !== "" && this.state.password !== ""
+             ?
+             <BrowserRouter>
+                <Navigate to="/App" replace={true}/>
+             </BrowserRouter>
+             :
+                <Form onSubmit={this.handleSubmit}>
+                    <Container size="sm" className="d-grid gap-1">
+                        <Row>
+                            <Col>
+                                <Label>Benutzer</Label>
+                            </Col>
+                            <Col>
+                                <Input 
+                                    name="userName" 
+                                    type="text"
+                                    placeholder="Geben Sie bitte den Benutzernamen ein"
+                                    onChange={this.inputHandler}
+                                    required/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Label>Password</Label>
+                            </Col>
+                            <Col>
+                                <Input 
+                                    name="password" 
+                                    type="password"
+                                    placeholder="Geben Sie bitte das Passwort ein"
+                                    onChange={this.inputHandler}
+                                    required/>
+                            </Col>
+                        </Row>
+                        <Input style={{width: 60}} type="submit" value="Login"/>
+                    </Container>
+                </Form>
+            }
         </div>
-    );
+        );
+    }
+
+    render() {
+        return(
+            this.renderLogin()
+        );
+    }
 }
-
-
-export default LoginForm;

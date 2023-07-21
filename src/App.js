@@ -68,23 +68,23 @@ export default class App extends Component {
             </Col>
             <Col xs="9">
               <Routes>
-                <Route path="*"
-                  element={
-                    <ProductList title="Products"
-                      currentCategory={this.state.currentCategory}
-                      serverUrl={this.state.jsonServerUrl}
-                      categoryId={this.state.categoryId}
-                      addToCart={this.addToCart} />
-                  }
+                <Route path="/" 
+                      element={
+                          <ProductList title="Products"
+                            currentCategory={this.state.currentCategory}
+                            serverUrl={this.state.jsonServerUrl}
+                            categoryId={this.state.categoryId}
+                            addToCart={this.addToCart} />
+                      }
                 />
                 <Route path="/cart" element={
-                  <CartList title="Products"
-                    cart={this.state.cart}
-                    removeFromCart={this.removeFromCart} />
-                }
+                          <CartList title="Products"
+                            cart={this.state.cart}
+                            removeFromCart={this.removeFromCart} />
+                      }
                 />
-                <Route path="/form1" element={<FormDemo1 />} />
-                <Route path="*" element={<NotFound />} />
+                <Route path="/form1" element={<FormDemo1 />}/>
+                <Route path="*" element={<NotFound />}/>
               </Routes>
             </Col>
           </Row>
